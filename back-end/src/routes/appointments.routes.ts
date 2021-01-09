@@ -28,7 +28,10 @@ appointmentsRouter.post('/', (request, response) => {
       .json({ message: "Already exist's an appointment for this hour" });
   }
 
-  const appointment = appointmentsRepository.create(provider, parsedDate);
+  const appointment = appointmentsRepository.create({
+    date: parsedDate,
+    provider,
+  });
 
   return response.status(200).json(appointment);
 });
